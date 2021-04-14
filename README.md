@@ -49,5 +49,3 @@ The following should be done by one person in each group.
 Now that you have a repo, you can start inviting your group members as collaborators so that they can work
 with you on your repo. Go to `Settings` -> `Manage Access` and then add your group members via their usernames.
 
-### Task
-You will find your task in [`Task.md`](Task.md)
