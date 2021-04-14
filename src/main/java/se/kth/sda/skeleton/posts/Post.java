@@ -1,6 +1,7 @@
 package se.kth.sda.skeleton.posts;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.Size;
 
 // @TODO add Hibernate annotations
@@ -12,6 +13,7 @@ public class Post {
 
     @Column(nullable = false)
     @Size(min=10)
+    @NotEmpty(message = "Please provide a valid post body")
     private String body;
 
     public Post() {
