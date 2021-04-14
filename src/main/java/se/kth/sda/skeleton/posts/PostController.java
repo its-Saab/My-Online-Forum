@@ -17,31 +17,33 @@ public class PostController {
     public PostController(PostRepository postRepository) {
         this.postRepository = postRepository;
     }
-    //Create a new post
+
+    //Create a new post/checked
     @PostMapping("/posts")
     public ResponseEntity<Post> createPost(@Valid @RequestBody Post postParam){
         return ResponseEntity.status(HttpStatus.CREATED).body(postRepository.save(postParam));
     }
 
-    //Get all posts
+    //Get all posts/checked
     @GetMapping("/posts")
     public ResponseEntity<List<Post>> getAllPosts(){
         return ResponseEntity.ok(postRepository.findAll());
     }
 
+    //Get a post by id/checked
     @GetMapping("/posts/{idParam}")
     public ResponseEntity<Post> getPostById(@PathVariable Long idParam){
         Post post = postRepository.findById(idParam).orElseThrow(ResourceNotFoundException::new);
         return ResponseEntity.ok(post);
     }
-
+    //Update a post by id/checked
     @PutMapping("/posts/{idParam}")
     public ResponseEntity<Post> postUpdate(@PathVariable Long idParam, @RequestBody Post postParam){
-        Post existingPost = postRepository.findById(idParam).orElseThrow(ResourceNotFoundException::new);
+        postRepository.findById(idParam).orElseThrow(ResourceNotFoundException::new);
         postParam.setId(idParam);
-        return ResponseEntity.status(HttpStatus.ACCEPTED).body(postRepository.save(postParam));
+        return ResponseEntity.ok(postRepository.save(postParam));
     }
-
+    //Delete a post by id/checked
     @DeleteMapping("/posts/{idParam}")
     @ResponseStatus(HttpStatus.NO_CONTENT)
     public void deletePost(@PathVariable Long idParam){
