@@ -10,11 +10,11 @@ import javax.persistence.*;
 import javax.validation.constraints.NotEmpty;
 import java.util.Date;
 import java.util.List;
+import java.util.Objects;
 
 
 @Entity
 public class Post {
-    //Checked
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
@@ -38,6 +38,7 @@ public class Post {
 
     public Post() {
     }
+
 
     public Post(Long id, @NotEmpty(message = "Please provide a valid post body") String body, User author) {
         this.id = id;
@@ -93,5 +94,19 @@ public class Post {
 
     public void setLastUpdated(Date lastUpdated) {
         this.lastUpdated = lastUpdated;
+    }
+
+    //To be used in comparing the post author with the user in session
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Post post = (Post) o;
+        return author.equals(post.author);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(author);
     }
 }

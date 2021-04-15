@@ -7,6 +7,7 @@ import se.kth.sda.skeleton.posts.Post;
 import se.kth.sda.skeleton.user.User;
 
 import java.util.Date;
+import java.util.Objects;
 import javax.persistence.*;
 
 @Entity
@@ -16,7 +17,6 @@ public class Comment {
     private Long id;
 
     private Date dateCreated;
-    private Date lastUpdated;
 
     @Column(nullable = false)
     private String body;
@@ -39,7 +39,6 @@ public class Comment {
     public Comment(Long id, String body, User user) {
         this.id = id;
         this.dateCreated = new Date();
-        this.lastUpdated = this.dateCreated;
         this.body = body;
         this.user = user;
     }
@@ -84,11 +83,16 @@ public class Comment {
         this.dateCreated = dateCreated;
     }
 
-    public Date getLastUpdated() {
-        return lastUpdated;
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Comment comment = (Comment) o;
+        return user.equals(comment.user);
     }
 
-    public void setLastUpdated(Date lastUpdated) {
-        this.lastUpdated = lastUpdated;
+    @Override
+    public int hashCode() {
+        return Objects.hash(user);
     }
 }

@@ -5,6 +5,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 import se.kth.sda.skeleton.auth.AuthService;
 import se.kth.sda.skeleton.exceptions.ResourceNotFoundException;
+import se.kth.sda.skeleton.exceptions.UnAuthorizedUserException;
 import se.kth.sda.skeleton.user.User;
 import se.kth.sda.skeleton.user.UserService;
 
@@ -40,17 +41,26 @@ public class PostService {
         return postRepository.findById(idParam).orElseThrow(ResourceNotFoundException::new);
     }
 
-    //Delete post by id.
+    //Delete post by id for authorized user.
     public void deletePostById(Long idParam){
         Post post = postRepository.findById(idParam).orElseThrow(ResourceNotFoundException::new);
-        postRepository.delete(post);
+        if (isAuthorized(post)) {
+            postRepository.delete(post);
+        } else {
+            throw new UnAuthorizedUserException();
+        }
+        ;
     }
 
     //Update a post.
     public Post update(Post postUpdate, Post existingPost){
-        existingPost.setBody(postUpdate.getBody());
-        existingPost.setLastUpdated(new Date());
-        return existingPost;
+        if(isAuthorized(existingPost)){
+            existingPost.setBody(postUpdate.getBody());
+            existingPost.setLastUpdated(new Date());
+            return existingPost;
+        } else {
+            throw new UnAuthorizedUserException();
+        }
     }
 
     //Generates a post instance from body.
@@ -61,6 +71,13 @@ public class PostService {
         postParam.setDateCreated(currentDate);
         postParam.setLastUpdated(currentDate);
         return postParam;
+    }
+
+    //to check if the author is authenticated before delete/update requests
+    public boolean isAuthorized(Post existingPost){
+        User postAuthor = existingPost.getAuthor();
+        User userInSession = userService.findUserByEmail(authService.getLoggedInUserEmail());
+        return postAuthor.equals(userInSession);
     }
 
 }

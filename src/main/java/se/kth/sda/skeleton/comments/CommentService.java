@@ -5,6 +5,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 import se.kth.sda.skeleton.auth.AuthService;
 import se.kth.sda.skeleton.exceptions.ResourceNotFoundException;
+import se.kth.sda.skeleton.exceptions.UnAuthorizedUserException;
 import se.kth.sda.skeleton.user.User;
 import se.kth.sda.skeleton.user.UserService;
 
@@ -31,14 +32,20 @@ public class CommentService {
     }
     public void deleteComment(Long idParam){
         Comment comment = commentRepository.findById(idParam).orElseThrow(ResourceNotFoundException::new);
-        commentRepository.delete(comment);
+        if(isAuthorized(comment)){
+            commentRepository.delete(comment);
+        } else {
+            throw new UnAuthorizedUserException();
+        }
     }
 
     public Comment update(Comment commentParam, Comment currentComment){
-
-        currentComment.setBody(commentParam.getBody());
-        currentComment.setLastUpdated(new Date());
-        return currentComment;
+        if(isAuthorized(currentComment)){
+            currentComment.setBody(commentParam.getBody());
+            return currentComment;
+        } else {
+            throw new UnAuthorizedUserException();
+        }
     }
 
     //Generates a post instance from body.
@@ -47,7 +54,14 @@ public class CommentService {
         User user = userService.findUserByEmail(authService.getLoggedInUserEmail());
         commentParam.setUser(user);
         commentParam.setDateCreated(currentDate);
-        commentParam.setLastUpdated(currentDate);
         return commentParam;
     }
+
+    //to authenticate the user or author in order to allow delete or update
+    public boolean isAuthorized(Comment existingComment){
+        User postAuthor = existingComment.getUser();
+        User userInSession = userService.findUserByEmail(authService.getLoggedInUserEmail());
+        return postAuthor.equals(userInSession);
+    }
+
 }
