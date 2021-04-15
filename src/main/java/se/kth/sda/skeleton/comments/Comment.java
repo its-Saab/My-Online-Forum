@@ -39,7 +39,7 @@ public class Comment {
     public Comment(Long id, String body, User user) {
         this.id = id;
         this.dateCreated = new Date();
-        this.lastUpdated = null;
+        this.lastUpdated = this.dateCreated;
         this.body = body;
         this.user = user;
     }

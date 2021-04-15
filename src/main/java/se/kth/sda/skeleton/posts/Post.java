@@ -43,7 +43,7 @@ public class Post {
         this.id = id;
         this.body = body;
         this.dateCreated = new Date();
-        this.lastUpdated = null;
+        this.lastUpdated = this.dateCreated;
         this.author = author;
     }
 

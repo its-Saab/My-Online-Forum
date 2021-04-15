@@ -55,9 +55,11 @@ public class PostService {
 
     //Generates a post instance from body.
     public Post generatePost(Post postParam){
+        Date currentDate = new Date();
         User author = userService.findUserByEmail(authService.getLoggedInUserEmail());
         postParam.setAuthor(author);
-        postParam.setDateCreated(new Date());
+        postParam.setDateCreated(currentDate);
+        postParam.setLastUpdated(currentDate);
         return postParam;
     }
 

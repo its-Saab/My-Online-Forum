@@ -43,9 +43,11 @@ public class CommentService {
 
     //Generates a post instance from body.
     public Comment generateComment(Comment commentParam){
+        Date currentDate = new Date();
         User user = userService.findUserByEmail(authService.getLoggedInUserEmail());
         commentParam.setUser(user);
-        commentParam.setDateCreated(new Date());
+        commentParam.setDateCreated(currentDate);
+        commentParam.setLastUpdated(currentDate);
         return commentParam;
     }
 }
