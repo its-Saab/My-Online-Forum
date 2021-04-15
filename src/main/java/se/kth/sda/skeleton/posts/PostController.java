@@ -4,53 +4,48 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-import se.kth.sda.skeleton.exceptions.ResourceNotFoundException;
+import se.kth.sda.skeleton.auth.AuthService;
+import se.kth.sda.skeleton.user.User;
+import se.kth.sda.skeleton.user.UserService;
 
-import javax.validation.Valid;
+import java.util.Date;
 import java.util.List;
 
 @RestController
 public class PostController {
-    PostRepository postRepository;
+    private final PostService postService;
 
     @Autowired
-    public PostController(PostRepository postRepository) {
-        this.postRepository = postRepository;
+    public PostController(PostService postService) {
+        this.postService = postService;
+
     }
 
-    //Create a new post/checked
+
     @PostMapping("/posts")
-    public ResponseEntity<Post> createPost(@Valid @RequestBody Post postParam){
-        return ResponseEntity.status(HttpStatus.CREATED).body(postRepository.save(postParam));
+    public ResponseEntity<Post> createPost(@RequestBody Post postParam){
+        return postService.create(postService.generatePost(postParam));
     }
 
-    //Get all posts/checked
     @GetMapping("/posts")
     public ResponseEntity<List<Post>> getAllPosts(){
-        return ResponseEntity.ok(postRepository.findAll());
+        return postService.fetchAll();
     }
 
-    //Get a post by id/checked
     @GetMapping("/posts/{idParam}")
     public ResponseEntity<Post> getPostById(@PathVariable Long idParam){
-        Post post = postRepository.findById(idParam).orElseThrow(ResourceNotFoundException::new);
-        return ResponseEntity.ok(post);
+        return ResponseEntity.ok(postService.fetchPostById(idParam));
     }
-    //Update a post by id/checked
+
     @PutMapping("/posts/{idParam}")
     public ResponseEntity<Post> postUpdate(@PathVariable Long idParam, @RequestBody Post postParam){
-        postRepository.findById(idParam).orElseThrow(ResourceNotFoundException::new);
-        postParam.setId(idParam);
-        return ResponseEntity.ok(postRepository.save(postParam));
+       Post existingPost = postService.fetchPostById(idParam);
+        return postService.create(postService.update( postParam, existingPost));
     }
-    //Delete a post by id/checked
+
     @DeleteMapping("/posts/{idParam}")
     @ResponseStatus(HttpStatus.NO_CONTENT)
     public void deletePost(@PathVariable Long idParam){
-        Post post = postRepository.findById(idParam).orElseThrow(ResourceNotFoundException::new);
-        postRepository.delete(post);
+       postService.deletePostById(idParam);
     }
-
-
-
 }

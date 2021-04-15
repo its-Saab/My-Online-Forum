@@ -3,8 +3,9 @@ package se.kth.sda.skeleton.comments;
 import com.fasterxml.jackson.annotation.JsonIdentityInfo;
 import com.fasterxml.jackson.annotation.JsonIdentityReference;
 import com.fasterxml.jackson.annotation.ObjectIdGenerators;
-import org.springframework.data.annotation.CreatedDate;
 import se.kth.sda.skeleton.posts.Post;
+import se.kth.sda.skeleton.user.User;
+
 import java.util.Date;
 import javax.persistence.*;
 
@@ -14,9 +15,10 @@ public class Comment {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @CreatedDate
-    private Date createdAt;
+    private Date dateCreated;
+    private Date lastUpdated;
 
+    @Column(nullable = false)
     private String body;
 
     @ManyToOne
@@ -25,6 +27,22 @@ public class Comment {
     @JoinColumn(nullable = false)
     private Post commentedPost;
 
+    @ManyToOne
+    @JsonIdentityInfo(generator = ObjectIdGenerators.PropertyGenerator.class, property = "email")
+    @JsonIdentityReference(alwaysAsId = true)
+    private User user;
+
+    public Comment() {
+
+    }
+
+    public Comment(Long id, String body, User user) {
+        this.id = id;
+        this.dateCreated = new Date();
+        this.lastUpdated = null;
+        this.body = body;
+        this.user = user;
+    }
 
     public Long getId() {
         return id;
@@ -50,11 +68,27 @@ public class Comment {
         this.commentedPost = commentedPost;
     }
 
-    public Date getCreatedAt() {
-        return new Date();
+    public User getUser() {
+        return user;
     }
 
-    public void setCreatedAt(Date createdAt) {
-        this.createdAt = createdAt;
+    public void setUser(User user) {
+        this.user = user;
+    }
+
+    public Date getDateCreated() {
+        return dateCreated;
+    }
+
+    public void setDateCreated(Date dateCreated) {
+        this.dateCreated = dateCreated;
+    }
+
+    public Date getLastUpdated() {
+        return lastUpdated;
+    }
+
+    public void setLastUpdated(Date lastUpdated) {
+        this.lastUpdated = lastUpdated;
     }
 }

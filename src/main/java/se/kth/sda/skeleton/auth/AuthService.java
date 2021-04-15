@@ -24,7 +24,8 @@ public class AuthService {
     private static final Logger logger = LoggerFactory.getLogger("AuthService");
 
     public String getLoggedInUserEmail() {
-        Object maybeUserDetails = SecurityContextHolder.getContext().getAuthentication().getDetails();
+        //@TODO getDetails() always cause a nullPointer exception so it was replaced with getPrincipal()
+        Object maybeUserDetails = SecurityContextHolder.getContext().getAuthentication().getPrincipal();
         if (maybeUserDetails instanceof UserDetails) {
             return ((UserDetails) maybeUserDetails).getUsername();
         }

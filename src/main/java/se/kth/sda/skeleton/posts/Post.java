@@ -1,9 +1,10 @@
 package se.kth.sda.skeleton.posts;
 
 import com.fasterxml.jackson.annotation.JsonIdentityInfo;
+import com.fasterxml.jackson.annotation.JsonIdentityReference;
 import com.fasterxml.jackson.annotation.ObjectIdGenerators;
-import org.springframework.data.annotation.CreatedDate;
 import se.kth.sda.skeleton.comments.Comment;
+import se.kth.sda.skeleton.user.User;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotEmpty;
@@ -18,24 +19,32 @@ public class Post {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
+    private Date dateCreated;
+    private Date lastUpdated;
+
     @Column(nullable = false)
     @NotEmpty(message = "Please provide a valid post body")
     private String body;
 
 
-    @CreatedDate
-    private Date createdAt;
-
-    @OneToMany(mappedBy = "commentedPost")
+    @OneToMany(mappedBy = "commentedPost", cascade = CascadeType.ALL)
     @JsonIdentityInfo(generator = ObjectIdGenerators.PropertyGenerator.class, property = "id")
     private List<Comment> postCommentsList;
 
+    @ManyToOne
+    @JsonIdentityInfo(generator = ObjectIdGenerators.PropertyGenerator.class, property = "email")
+    @JsonIdentityReference(alwaysAsId = true)
+    private User author;
 
     public Post() {
     }
 
-    public Post(String body) {
+    public Post(Long id, @NotEmpty(message = "Please provide a valid post body") String body, User author) {
+        this.id = id;
         this.body = body;
+        this.dateCreated = new Date();
+        this.lastUpdated = null;
+        this.author = author;
     }
 
     public Long getId() {
@@ -62,11 +71,27 @@ public class Post {
         this.postCommentsList = postCommentsList;
     }
 
-    public Date getCreatedAt() {
-        return new Date();
+    public Date getDateCreated() {
+        return this.dateCreated;
     }
 
-    public void setCreatedAt(Date createdAt) {
-        this.createdAt = createdAt;
+    public void setDateCreated(Date dateCreated) {
+        this.dateCreated = dateCreated;
+    }
+
+    public User getAuthor() {
+        return author;
+    }
+
+    public void setAuthor(User author) {
+        this.author = author;
+    }
+
+    public Date getLastUpdated() {
+        return lastUpdated;
+    }
+
+    public void setLastUpdated(Date lastUpdated) {
+        this.lastUpdated = lastUpdated;
     }
 }
