@@ -1,11 +1,12 @@
 import React from "react";
 import { Link } from "react-router-dom";
+import logo from "../assests/images/logo-movie2.png";
 
 export default function Navbar({ onLogout }) {
   return (
     <nav className="navbar navbar-expand-lg navbar-dark bg-dark">
       <Link className="navbar-brand" to="/">
-        SDA starter
+        <img className="img-fluid" src={logo} alt="Logo" />
       </Link>
       <button
         className="navbar-toggler"
