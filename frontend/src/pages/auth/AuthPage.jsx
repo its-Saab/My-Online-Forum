@@ -26,9 +26,9 @@ export default function LoginPage() {
     <div className="wrapper">
       <div className="container">
         <div className="row mt-4">
-          <div className="col-md-6 " style={{ color: "white" }}>
-            <h1>SDA</h1>
-            <p>Starter template</p>
+          <div className="col-md-6 " style={{ color: "black" }}>
+            <h4>Welcome to MovieClub!</h4>
+            <p>You are just one step away from entering our movie forum</p>
           </div>
 
           <div className="col-md-6">
