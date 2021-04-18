@@ -1,30 +1,32 @@
 import React  from "react";
 import { useRecoilValue } from "recoil";
-import { postsStates } from "../../state/state";
+import { postState } from "../../state/state";
+import FullPostCard from "../posts/FullPostCard";
+import { Link } from "react-router-dom";
+import AllComments from "../Comments/AllComment";
+
+
 
 export const ParticularPostPage = ({match}) => {
   // Local state
     const routerID = match.params.id;
-    const posts = useRecoilValue(postsStates);
+    const posts = useRecoilValue(postState);
     const currentPost = posts.find((post) => post.id === parseInt(routerID));
   
-    const {
-      id: postId,
-      dateCreated,
-      lastUpdated,
-      body: postContent,
-      postCommentsList,
-      author,
-    } = currentPost;
-
 
  return (
-   <>
-     <p>Post Id: {postId}</p>
-     <p>Date created: {dateCreated}</p>
-     <p>Last updated: {lastUpdated}</p>
-     <p>Content: {postContent}</p>
-     <p>Author: {author}</p>
-   </>
+   <div>
+     <FullPostCard key = {currentPost.id} information = {currentPost} />
+     <br />
+     <AllComments />
+     
+
+     <Link to="/posts"><button type="button" class="btn btn-danger btn-lg">Go back</button></Link>
+     
+   </div>
+
  );
-};
+
+ 
+
+}

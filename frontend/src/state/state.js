@@ -1,13 +1,7 @@
-import { selector } from "recoil";
-import PostsApi from "../api/PostsApi";
+import { atom } from "recoil";
 
-export const postsStates = selector({
-  key: "postsStates",
-  async get({ get }) {
-    try {
-      return PostsApi.getAllPosts().then(({ data }) => data);
-    } catch (e) {
-      console.error("ERROR GET /posts", e);
-    }
-  },
+
+export const postState = atom({
+  key: "postState",
+  default: [],
 });

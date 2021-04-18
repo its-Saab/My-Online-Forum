@@ -9,7 +9,7 @@ export default function PostCard({ post, onDeleteClick }) {
         <p>{post.body}</p>
         
         <Link to={`/posts/${post.id}`}>
-          <button>View</button>
+          <button className="btn btn-danger">View</button>
         </Link>
 
         <button className="btn btn-danger" onClick={onDeleteClick}>

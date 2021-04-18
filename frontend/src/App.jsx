@@ -13,6 +13,7 @@ import PostsPage from "./pages/posts/PostsPage";
 import ChatPage from "./pages/chat/ChatPage";
 import { ParticularPostPage } from "./pages/posts/ParticularPostPage";
 import "./App.css";
+import EditPostForm from "./pages/posts/EditPostForm";
 
 export default function App() {
   // State
@@ -33,6 +34,7 @@ export default function App() {
               <Route path="/" component={HomePage} exact />
               <Route path="/posts" component={PostsPage} exact />
               <Route path="/posts/:id" component={ParticularPostPage} />
+              <Route path ="/posts/:id/edit" component={EditPostForm} />
               <Route path="/chat" component={ChatPage} />
             </Suspense>
           </Switch>

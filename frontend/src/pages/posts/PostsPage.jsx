@@ -1,7 +1,7 @@
 // NPM Packages
-import React, { useEffect, useState } from "react";
-import { useRecoilValue } from "recoil";
-import { postsStates } from "../../state/state";
+import React, { useEffect } from "react";
+import { useRecoilState } from "recoil";
+import { postState } from "../../state/state";
 
 // Project files
 import PostsApi from "../../api/PostsApi";
@@ -10,7 +10,7 @@ import Card from "./Card";
 
 export default function PostsPage() {
   // Local state
-  const [posts, setPosts] = useState(useRecoilValue(postsStates));
+  const [posts, setPosts] = useRecoilState(postState);
 
   // Methods
   async function createPost(postData) {
