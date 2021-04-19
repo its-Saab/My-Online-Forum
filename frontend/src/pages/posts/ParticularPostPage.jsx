@@ -7,18 +7,16 @@ import AllComments from "../Comments/AllComment";
 
 
 
-export const ParticularPostPage = ({match}) => {
+export const ParticularPostPage = ({id, user}) => {
  // Global state
  const posts = useRecoilValue(postState);
 
  //Constants
-  const routerID = match.params.id;
-  const currentPost = posts.find((item) => item.id === parseInt(routerID));
-
+  const currentPost = posts.find((item) => item.id ==id);
 
  return (
    <div>
-     <FullPostCard key = {currentPost.id} information = {currentPost} />
+     <FullPostCard information = {currentPost} user={user? user:""} />
      <br />
      <AllComments />
 

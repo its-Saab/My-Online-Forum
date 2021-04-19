@@ -10,11 +10,11 @@ import Form from "./Form";
 import Card from "./Card";
 
 
-export default function PostsPage() {
+export default function PostsPage({user}) {
 
   // Global state
   const [posts, setPosts] = useRecoilState(postState);
-  const [user, setUser] = useState("")
+
   // Methods
   async function createPost(postData) {
     try {
@@ -43,14 +43,11 @@ export default function PostsPage() {
     PostsApi.getAllPosts()
       .then(({ data }) => setPosts(data))
       .catch((err) => console.error(err));
-
-     AuthApi.getUserInSession()
-     .then(({ data }) => setUser(data))
-     .catch((err) => console.error(err));
   }, []);
+
   // Components
   const CardsArray = posts.map((post) => (
-    <Card key={post.id} post={post} onDeleteClick={() => deletePost(post)} userInSession={user} />
+    <Card key={post.id} post={post} onDeleteClick={() => deletePost(post)} userInSession={user? user: ""} />
   ));
 
   return (
