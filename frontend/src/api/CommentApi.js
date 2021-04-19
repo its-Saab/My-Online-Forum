@@ -9,8 +9,8 @@ class CommentApi {
     //     return Api.get('/posts/'+id);
     // }
 
-    createComment(postId) {
-        return Api.post(`/posts/${postId}/comments`);
+    createComment(postId, body) {
+        return Api.post(`/posts/${postId}/comments`, body);
     }
 
     updateComment(commentData) {
