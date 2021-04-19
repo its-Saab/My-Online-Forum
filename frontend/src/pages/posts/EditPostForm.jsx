@@ -25,7 +25,6 @@ export default function EditPostForm({ item }) {
 	const handleSubmit = () => {
 		updatePost({...item, body});
 		history.push(`/posts`);
-		// window.location.reload();
 	};
 
 	return (
