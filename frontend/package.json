@@ -7,10 +7,12 @@
     "bootstrap": "^4.3.1",
     "react": "^16.11.0",
     "react-dom": "^16.11.0",
+    "react-recoil": "^0.7.0",
     "react-router-dom": "^5.1.2",
     "react-scripts": "^4.0.3",
     "recoil": "^0.2.0",
     "recoil-persist": "^2.5.0"
+
   },
   "scripts": {
     "start": "react-scripts start",

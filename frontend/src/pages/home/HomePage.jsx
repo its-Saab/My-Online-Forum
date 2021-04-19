@@ -1,35 +1,18 @@
 // NPM Packages
 import React from "react";
+import { Link } from "react-router-dom";
+import homePhoto from "../../assests/images/home-photo.png";
 
 export default function HomePage() {
   return (
-    <div className="card">
-      <div className="card-body">
-        <h4 className="card-title">SDA starter template</h4>
-        <p>
-          This starter template is based on Spring, PostgreSQL, React, React
-          router and Axios. Check the following links for documentation and
-          guides:
-        </p>
-        <ul>
-          <li>
-            <a href="https://spring.io/projects/spring-boot">Spring</a>
-          </li>
-          <li>
-            <a href="https://www.postgresql.org">PostgreSQL</a>
-          </li>
-          <li>
-            <a href="https://reactjs.org">React</a>
-          </li>
-          <li>
-            <a href="https://reacttraining.com/react-router/web/guides/quick-start">
-              React Router
-            </a>
-          </li>
-          <li>
-            <a href="https://github.com/axios/axios">Axios</a>
-          </li>
-        </ul>
+    <div>
+      <div>
+        <img className="img-fluid" src={homePhoto} alt="Cinema in pink light" />
+        <h4 className="card-title">Welcome to MovieClub!</h4>
+        <p>SCANDINAVIA’S THE MOST POPULAR FORUM FOR MOVIE REVIEWS & DISCUSSIONS</p>
+        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
+        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
+      <Link to="/posts"><button type="button" class="btn btn-danger btn-lg">Read posts</button></Link>
       </div>
     </div>
   );

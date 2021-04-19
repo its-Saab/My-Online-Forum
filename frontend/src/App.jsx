@@ -12,6 +12,7 @@ import HomePage from "./pages/home/HomePage";
 import PostsPage from "./pages/posts/PostsPage";
 import ChatPage from "./pages/chat/ChatPage";
 import { ParticularPostPage } from "./pages/posts/ParticularPostPage";
+
 import "./App.css";
 import EditPostPage from "./pages/posts/EditPostPage"
 

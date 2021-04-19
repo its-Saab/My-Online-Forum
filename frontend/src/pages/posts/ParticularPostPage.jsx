@@ -8,10 +8,12 @@ import AllComments from "../Comments/AllComment";
 
 
 export const ParticularPostPage = ({match}) => {
-  // Local state
-    const routerID = match.params.id;
-    const posts = useRecoilValue(postState);
-    const currentPost = posts.find(post => post.id == routerID);
+ // Global state
+ const posts = useRecoilValue(postState);
+
+ //Constants
+  const routerID = match.params.id;
+  const currentPost = posts.find((item) => item.id === parseInt(routerID));
 
 
  return (
