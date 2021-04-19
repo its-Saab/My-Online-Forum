@@ -4,6 +4,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.AuthenticationException;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 import se.kth.sda.skeleton.user.User;
 import se.kth.sda.skeleton.user.UserService;
@@ -17,7 +18,7 @@ public class AuthController {
     private UserService userService;
 
     @PostMapping("/register")
-    public ResponseEntity<?> register(@RequestBody User user) {
+    public ResponseEntity<?> register(@Validated @RequestBody User user) {
         userService.register(user);
 
         String token = authService.createAuthToken(user.getEmail());
@@ -36,5 +37,11 @@ public class AuthController {
         } catch (AuthenticationException authenticationException) {
             return new ResponseEntity<>(HttpStatus.UNAUTHORIZED);
         }
+    }
+
+    @GetMapping("/user")
+    public String getUser(){
+        User userInSession = userService.findUserByEmail(authService.getLoggedInUserEmail());
+        return userInSession.getEmail();
     }
 }
