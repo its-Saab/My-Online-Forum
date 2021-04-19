@@ -19,8 +19,8 @@ export const ParticularPostPage = ({id, user}) => {
      <FullPostCard information = {currentPost} user={user? user:""} />
      <br />
      <AllComments id={id} user={user} />
-    <div class="special-card text-center">
-      <div class="card-body">
+    <div className="special-card text-center">
+      <div className="card-body">
         <Link to="/posts"><button type="button" className="btn btn-danger btn-lg">Go back</button></Link>
       </div>
     </div>

@@ -22,7 +22,6 @@ export default function PostForm({ onSubmit }) {
   return (
     <div className="card">
       <div className="card-body">
-        <h4 className="card-title">What's on your mind?</h4>
         <div>
           <div className="form-group">
             <textarea
@@ -30,6 +29,7 @@ export default function PostForm({ onSubmit }) {
               value={body}
               onChange={handleChange}
               maxLength= "255"
+              placeholder= "What are your thoughts on the latest movie that you watched?"
             />
           </div>
 

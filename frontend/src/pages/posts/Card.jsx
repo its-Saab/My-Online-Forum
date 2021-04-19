@@ -14,7 +14,7 @@ export default function PostCard({ post, onDeleteClick, userInSession = "" }) {
         <hr/>
         <div>
         <small>{post.author}</small>
-        <small className="float-right">Posted <ReactTimeAgo date={post.dateCreated} locale="en-US"/></small>
+        <small className="float-right">Posted <ReactTimeAgo date={new Date(post.dateCreated)} locale="en-US"/></small>
         </div>
         <br/>
         <div>
