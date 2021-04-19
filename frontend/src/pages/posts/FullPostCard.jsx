@@ -1,21 +1,20 @@
 import React from "react";
-import {Link} from "react-router-dom";
+import { Link, useHistory } from "react-router-dom";
 
+export default function FullPostCard({ information }) {
+	const history = useHistory();
 
-export default function FullPostCard ({information}){
-    return(
-        <div className="card mt-3">
-            <div className="card-body">
-                <p>{information.author}</p>
-                <p>{information.body}</p>
-                 <Link to={`/posts/${information.id}/edit`}>
-                    <button className="btn btn-primary">
-                        Edit</button>
-                 </Link> 
-               
-        
-            </div>
-        </div>
-         
-    )
+	const handleEditButton = (e) => {
+		e.preventDefault();
+		history.push(`/posts/${information.id}/edit`);
+	};
+	return (
+		<div className="card mt-3">
+			<div className="card-body">
+				<p>{information.author}</p>
+				<p>{information.body}</p>
+				<button onClick={handleEditButton} className="btn btn-primary">Edit</button>
+			</div>
+		</div>
+	);
 }

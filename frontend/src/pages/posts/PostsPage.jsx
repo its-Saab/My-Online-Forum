@@ -1,5 +1,5 @@
 // NPM Packages
-import React, { useEffect } from "react";
+import React, {useState, useEffect } from "react";
 import { useRecoilState } from "recoil";
 import { postState } from "../../state/state";
 
@@ -11,7 +11,6 @@ import Card from "./Card";
 export default function PostsPage() {
   // Local state
   const [posts, setPosts] = useRecoilState(postState);
-
   // Methods
   async function createPost(postData) {
     try {
@@ -40,9 +39,10 @@ export default function PostsPage() {
     PostsApi.getAllPosts()
       .then(({ data }) => setPosts(data))
       .catch((err) => console.error(err));
-  }, [setPosts]);
+  }, []);
 
   // Components
+  console.log(posts)
   const CardsArray = posts.map((post) => (
     <Card key={post.id} post={post} onDeleteClick={() => deletePost(post)} />
   ));

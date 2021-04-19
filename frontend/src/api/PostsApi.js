@@ -14,12 +14,12 @@ class PostsApi {
     }
 
     updatePost(post) {
-        return Api.put('/posts', post);
+        return Api.put(`/posts/${post.id}`, {"body":post.body});
     }
 
     deletePost(id) {
         return Api.delete('/posts/'+id);
-    } 
+    }
 }
 
 export default new PostsApi();

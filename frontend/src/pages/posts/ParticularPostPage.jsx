@@ -11,22 +11,21 @@ export const ParticularPostPage = ({match}) => {
   // Local state
     const routerID = match.params.id;
     const posts = useRecoilValue(postState);
-    const currentPost = posts.find((post) => post.id === parseInt(routerID));
-  
+    const currentPost = posts.find(post => post.id == routerID);
+
 
  return (
    <div>
      <FullPostCard key = {currentPost.id} information = {currentPost} />
      <br />
      <AllComments />
-     
 
-     <Link to="/posts"><button type="button" class="btn btn-danger btn-lg">Go back</button></Link>
-     
+     <Link to="/posts"><button type="button" className="btn btn-danger btn-lg">Go back</button></Link>
+
    </div>
 
  );
 
- 
+
 
 }
