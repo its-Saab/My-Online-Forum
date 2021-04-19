@@ -14,7 +14,6 @@ export default function AllComments({id, user}) {
   // Methods
   async function createComment(commentData) {
     try {
-
       const response = await CommentApi.createComment(id, commentData);
       const comment = response.data;
       const newComments = comments.concat(comment);
