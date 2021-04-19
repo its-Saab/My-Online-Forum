@@ -13,11 +13,11 @@ export default function EditPostPage({ id }) {
 			.catch((err) => console.error(err));
 	}, [setPosts]);
 
-	let postToEdit = posts.find(post => post.id == id)
+	const postToEdit = posts.find(post => post.id == id);
 	return (
-		<div>
-			<EditPostForm key={posts.id} item={postToEdit} />
-		</div>
-	);
+    <div>
+      <EditPostForm item={postToEdit} />
+    </div>
+  );
 }
 // onSubmit={(postData) => updatePost(postData)}
