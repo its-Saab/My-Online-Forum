@@ -1,14 +1,16 @@
 // NPM Packages
 import React, { useEffect } from "react";
 import { useRecoilState } from "recoil";
+import { postState } from "../../state/state";
 
 // Project files
 import PostsApi from "../../api/PostsApi";
 import Form from "./Form";
 import Card from "./Card";
-import { postState } from "../../state/state";
+
 
 export default function PostsPage() {
+
   // Global state
   const [posts, setPosts] = useRecoilState(postState);
 
@@ -40,9 +42,10 @@ export default function PostsPage() {
     PostsApi.getAllPosts()
       .then(({ data }) => setPosts(data))
       .catch((err) => console.error(err));
-  }, [setPosts]);
+  }, []);
 
   // Components
+  console.log(posts)
   const CardsArray = posts.map((post) => (
     <Card key={post.id} post={post} onDeleteClick={() => deletePost(post)} />
   ));
