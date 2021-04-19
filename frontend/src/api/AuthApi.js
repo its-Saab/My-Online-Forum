@@ -9,6 +9,9 @@ class AuthApi {
         return Api.post('/register', {name, email, password});
     }
 
+    getUserInSession(){
+        return Api.get('/user');
+    }
 }
 
 export default new AuthApi();
