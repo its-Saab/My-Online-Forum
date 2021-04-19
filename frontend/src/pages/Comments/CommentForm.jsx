@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from "react-router-dom";
 
 export default function CommentForm({ onSubmit }) {
   const [body, setBody] = React.useState("");
@@ -24,12 +25,12 @@ export default function CommentForm({ onSubmit }) {
               onChange={(e) => setBody(e.target.value)}
             />
           </div>
-
-          <div className="form-group">
+        <Link to={`/posts/${postId}/comments`}>
             <button className="btn btn-primary" onClick={handleSubmit}>
               Comment
             </button>
-          </div>
+          
+          </Link>
         </div>
       </div>
     </div>
