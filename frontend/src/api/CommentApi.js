@@ -10,7 +10,8 @@ class CommentApi {
     // }
 
     createComment(postId,body) {
-        return Api.post(`/posts/${postId}/comments`, body);
+        console.log("bodyFromApi",body)
+        return Api.post(`/posts/${postId}/comments`, {"body": body});
     }
 
     updateComment(commentData) {

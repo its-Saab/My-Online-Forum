@@ -1,7 +1,7 @@
 import React from "react";
 import { Link } from "react-router-dom";
 
-export default function CommentCard({comment, onDeleteClick }) {
+export default function CommentCard({post, comment, onDeleteClick }) {
   return (
     <div className="card mt-3">
       <div className="card-body">

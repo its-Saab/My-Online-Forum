@@ -9,17 +9,14 @@ import CommentForm from "./CommentForm";
 import CommentCard from "./CommentCard";
 
 export default function AllComments(post) {
-<<<<<<< HEAD
-  
-=======
->>>>>>> c8d6c56878db10efd9b055b79fbe088e8ddfb593
+  console.log("post id",post.post.id)
   // Local state
   const [comments, setComments] = useRecoilState(commentState);
 
   // Methods
-  async function createComment(commentData) {
+  async function createComment( id,commentData) {
     try {
-      const response = await CommentApi.createComment(commentData);
+      const response = await CommentApi.createComment(id, commentData);
       const comment = response.data;
       const newComments = comments.concat(comment);
 
@@ -53,7 +50,7 @@ export default function AllComments(post) {
 
   return (
     <div>
-      <CommentForm onSubmit={(commentData) => createComment(commentData)} />
+      <CommentForm id={post.post.id} onSubmit={(commentData) => createComment(commentData)} />
 
       {CardsArray}
     </div>
