@@ -4,7 +4,7 @@ import logo from "../assests/images/logo-movie2.png";
 
 export default function Navbar({ onLogout }) {
   return (
-    <nav className="navbar navbar-expand-lg navbar-dark bg-dark">
+    <nav className="navbar navbar-expand-lg navbar-dark bg-custom">
       <Link className="navbar-brand" to="/">
         <img className="img-fluid" src={logo} alt="Logo" />
       </Link>
@@ -42,7 +42,7 @@ export default function Navbar({ onLogout }) {
         </ul>
 
         <button
-          className="btn btn-outline-info my-2 my-sm-0"
+          className="btn btn-outline-light my-2 my-sm-0"
           onClick={onLogout}
         >
           Logout

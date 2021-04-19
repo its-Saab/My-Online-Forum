@@ -1,12 +1,45 @@
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+# MovieClub
 
-## Available Scripts
+MovieClub is a full-stack application representing a web discussion forum where users can:
+- Make a post
+- Delete a post
+- Update a post
+- View all posts
+- Write a comment on a post
+- Delete a comment on a post
+- View all comments on a post 
 
-The first time you want to run the application you need to install the dependencies by running:
+The application consists of three main parts: 
+1. Database (Postgres)
+2. Backend server (Spring)
+3. Fronend development server (React)
+
+## Prerequisites
+
+### `docker and docker-compose`
+### `nodejs`
+
+## How to start the database
+
+In the root folder, run
+
+### `docker-compose up`
+
+## How to start the backend server
+
+Open the root folder and run
+
+### `./gradlew bootRun`
+
+## How to start the frontend development server
+
+The frontend application is in the directory frontend. From there, run
 
 ### `npm install`
 
-You only need to run the above command again if you add a new dependency. You can then run:
+to install all the dependencies needed for the project.
+
+Then start the frontend application by running
 
 ### `npm start`
 
@@ -16,57 +49,20 @@ Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
 The page will reload if you make edits.<br />
 You will also see any lint errors in the console.
 
-### `npm test`
+# How to navigate inside MovieClub
 
-Launches the test runner in the interactive watch mode.<br />
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+## Authentication
 
-### `npm run build`
+When you have successfully started the application, you will see the Login page.
+You will need to fill in the registration form when you are entering the forum for the first time. After logging out, next time, simply, re-enter your login details (your data will be stored, unless you quit the server). 
 
-Builds the app for production to the `build` folder.<br />
-It correctly bundles React in production mode and optimizes the build for the best performance.
+## Homepage
 
-The build is minified and the filenames include the hashes.<br />
-Your app is ready to be deployed!
+Once you have created your account, the application will redirect you to the home page. 
+The home page consists of a navigation bar and an information about MovieClub itself. 
+Use navigation or press "Read posts" button to see the Posts page. 
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+## Posts Page
 
-### `npm run eject`
+On this page you can create a post and then either delete it or edit it (the edit function is available after pressing "Read more" button which redirects you to the Editor Page). These functionalities are available only for the author of the post. Users can comment on a post, however only users themselves can delete their comments. 
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
-
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (Webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
-
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/code-splitting
-
-### Analyzing the Bundle Size
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size
-
-### Making a Progressive Web App
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app
-
-### Advanced Configuration
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/advanced-configuration
-
-### Deployment
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/deployment
-
-### `npm run build` fails to minify
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify
