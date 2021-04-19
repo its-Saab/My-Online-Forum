@@ -8,7 +8,8 @@ import CommentApi from "../../api/CommentApi";
 import CommentForm from "./CommentForm";
 import CommentCard from "./CommentCard";
 
-export default function AllComments() {
+export default function AllComments(post) {
+  
   // Local state
   const [comments, setComments] = useRecoilState(commentState);
 
@@ -44,7 +45,7 @@ export default function AllComments() {
 
   // Components
   const CardsArray = comments.map((comment) => (
-    <CommentCard key={comment.id} comment={comment} onDeleteClick={() => deleteComment(comment)} />
+    <CommentCard post={post.id} key={comment.id} comment={comment} onDeleteClick={() => deleteComment(comment)} />
   ));
 
   return (
