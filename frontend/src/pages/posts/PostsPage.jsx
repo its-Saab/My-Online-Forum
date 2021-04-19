@@ -1,11 +1,10 @@
 // NPM Packages
-import React, { useState, useEffect } from "react";
+import React, {useEffect } from "react";
 import { useRecoilState } from "recoil";
 import { postState } from "../../state/state";
 
 // Project files
 import PostsApi from "../../api/PostsApi";
-import AuthApi from "../../api/AuthApi"
 import Form from "./Form";
 import Card from "./Card";
 
