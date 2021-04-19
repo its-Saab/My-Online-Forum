@@ -23,12 +23,12 @@ export default function App() {
   const [userInSession, setUserInSession] = useState("");
   // Constants
   Auth.bindLoggedInStateSetter(setLoggedIn);
-
+console.log("fromApp",userInSession)
   useEffect(() => {
     AuthApi.getUserInSession()
     .then(({ data }) => setUserInSession(data))
     .catch((err) => console.error(err));
-  }, [])
+  }, [loggedIn])
   // Components
   const loggedInRouter = (
     <RecoilRoot>

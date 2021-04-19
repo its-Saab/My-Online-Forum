@@ -1,16 +1,21 @@
 import React, { useState } from "react";
 import PostsApi from "../../api/PostsApi";
 import { useHistory } from "react-router-dom";
+import { useRecoilState } from "recoil";
+import { postState } from "../../state/state";
 
 export default function EditPostForm({ item }) {
 	const [body, setBody] = useState(item? item.body:"");
-
+	const [posts, setPosts] = useRecoilState(postState);
 
 	const history = useHistory();
 
 	async function updatePost(postData) {
 		try {
 		 await PostsApi.updatePost(postData);
+		 PostsApi.getAllPosts()
+		 .then(({ data }) => setPosts(data))
+		 .catch((err) => console.error(err));
 		} catch (e) {
 			console.error(e);
 		}
@@ -20,7 +25,7 @@ export default function EditPostForm({ item }) {
 	const handleSubmit = () => {
 		updatePost({...item, body});
 		history.push(`/posts`);
-		window.location.reload();
+		// window.location.reload();
 	};
 
 	return (
