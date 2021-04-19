@@ -5,6 +5,7 @@ import React from "react";
 import LoginForm from "./LoginForm";
 import RegisterForm from "./RegisterForm";
 import Auth from "../../services/Auth";
+import logo from "../../assests/images/logo-movie2.png";
 
 export default function LoginPage() {
   // Methods
@@ -26,7 +27,8 @@ export default function LoginPage() {
     <div className="wrapper">
       <div className="container">
         <div className="row mt-4">
-          <div className="col-md-6 " style={{ color: "black" }}>
+          <div className="col-md-6 text-center" style={{ color: "black" }}>
+            <img className="img-fluid" src={logo} alt="Logo" />
             <h4>Welcome to MovieClub!</h4>
             <p>You are just one step away from entering our movie forum</p>
           </div>

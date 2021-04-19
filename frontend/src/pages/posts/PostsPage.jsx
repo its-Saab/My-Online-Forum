@@ -1,15 +1,16 @@
 // NPM Packages
-import React, { useEffect } from "react";
+import React, { useState, useEffect } from "react";
 import { useRecoilState } from "recoil";
 import { postState } from "../../state/state";
 
 // Project files
 import PostsApi from "../../api/PostsApi";
+import AuthApi from "../../api/AuthApi"
 import Form from "./Form";
 import Card from "./Card";
 
 
-export default function PostsPage() {
+export default function PostsPage({user}) {
 
   // Global state
   const [posts, setPosts] = useRecoilState(postState);
@@ -45,16 +46,15 @@ export default function PostsPage() {
   }, []);
 
   // Components
-  console.log(posts)
   const CardsArray = posts.map((post) => (
-    <Card key={post.id} post={post} onDeleteClick={() => deletePost(post)} />
+    <Card key={post.id} post={post} onDeleteClick={() => deletePost(post)} userInSession={user? user: ""} />
   ));
 
   return (
     <div>
       <Form onSubmit={(postData) => createPost(postData)} />
-
       {CardsArray}
+      <br/>
     </div>
   );
 }
