@@ -10,7 +10,6 @@ class CommentApi {
     }
 
     createComment(postId, commentData) {
-        console.log("commentApi",commentData)
         return Api.post(`/posts/${postId}/comments`, commentData);
     }
 

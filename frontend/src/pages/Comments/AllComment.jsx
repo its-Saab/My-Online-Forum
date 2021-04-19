@@ -51,7 +51,7 @@ export default function AllComments({id, user}) {
     <div>
       <h1>Comments</h1>
       {CardsArray}
-      <CommentForm postId ={id} onSubmit={(commentData) => createComment(commentData)} />
+      <CommentForm onSubmit={(commentData) => createComment(commentData)} />
 
     </div>
   );

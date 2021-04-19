@@ -1,5 +1,4 @@
 import React from "react";
-import { Link } from "react-router-dom";
 import ReactTimeAgo from 'react-time-ago'
 
 export default function CommentCard({ userInSession, comment, onDeleteClick }) {

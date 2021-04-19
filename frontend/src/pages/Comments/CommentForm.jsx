@@ -1,6 +1,6 @@
 import React, {useState} from "react";
 
-export default function CommentForm({postId, onSubmit }) {
+export default function CommentForm({ onSubmit }) {
   const [body, setBody] = useState("");
   const handleSubmit = () => {
     // Invoke the passed in event callback
