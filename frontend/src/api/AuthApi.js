@@ -8,6 +8,7 @@ class AuthApi {
     register ({name, email, password}) {
         return Api.post('/register', {name, email, password});
     }
+
 }
 
 export default new AuthApi();
