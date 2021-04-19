@@ -6,7 +6,6 @@ export default function CommentCard({comment, onDeleteClick }) {
     <div className="card mt-3">
       <div className="card-body">
         <p>{comment.body}</p>
-
         <button className="btn btn-danger" onClick={onDeleteClick}>
           Delete
         </button>

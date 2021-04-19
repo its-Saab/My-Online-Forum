@@ -9,7 +9,10 @@ import CommentForm from "./CommentForm";
 import CommentCard from "./CommentCard";
 
 export default function AllComments(post) {
+<<<<<<< HEAD
   
+=======
+>>>>>>> c8d6c56878db10efd9b055b79fbe088e8ddfb593
   // Local state
   const [comments, setComments] = useRecoilState(commentState);
 

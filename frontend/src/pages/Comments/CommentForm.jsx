@@ -25,6 +25,7 @@ export default function CommentForm({ post, onSubmit }) {
               onChange={(e) => setBody(e.target.value)}
             />
           </div>
+<<<<<<< HEAD
           
             <button className="btn btn-primary" onClick={handleSubmit}>
               Comment
@@ -32,6 +33,14 @@ export default function CommentForm({ post, onSubmit }) {
             
           </div>
 
+=======
+        <Link to={`/posts/${postId}/comments`}>
+            <button className="btn btn-primary" onClick={handleSubmit}>
+              Comment
+            </button>
+          
+          </Link>
+>>>>>>> c8d6c56878db10efd9b055b79fbe088e8ddfb593
         </div>
       </div>
     
