@@ -1,10 +1,6 @@
 import React from "react";
 import { Link } from "react-router-dom";
-<<<<<<< HEAD
-import logo from "../assets/images/logo-movie2.png";
-=======
 import logo from "../assests/images/logo-movie2.png";
->>>>>>> main
 
 export default function Navbar({ onLogout }) {
   return (

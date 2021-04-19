@@ -7,7 +7,7 @@ import { postState } from "../../state/state";
 import PostsApi from "../../api/PostsApi";
 import Form from "./Form";
 import Card from "./Card";
-import { postState } from "../../state/state";
+
 
 export default function PostsPage() {
 
