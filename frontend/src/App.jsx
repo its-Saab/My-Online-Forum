@@ -23,6 +23,7 @@ export default function App() {
   const [userInSession, setUserInSession] = useState("");
   // Constants
   Auth.bindLoggedInStateSetter(setLoggedIn);
+  Auth.bindLoggedInUserStateSetter(setUserInSession);
 
   useEffect(() => {
     AuthApi.getUserInSession()
@@ -39,9 +40,26 @@ export default function App() {
           <Switch>
             <Suspense fallback={<div>Loading...</div>}>
               <Route path="/" component={HomePage} exact />
-              <Route exact path="/posts" render={() => <PostsPage user={userInSession}/>} />
-              <Route exact path="/posts/:id" render={(props) => <ParticularPostPage id={props.match.params.id} user={userInSession}/>}  />
-              <Route  exact path="/posts/:id/edit" render={(props) => <EditPostPage id={props.match.params.id}/>} />
+              <Route
+                exact
+                path="/posts"
+                render={() => <PostsPage user={userInSession} />}
+              />
+              <Route
+                exact
+                path="/posts/:id"
+                render={(props) => (
+                  <ParticularPostPage
+                    id={props.match.params.id}
+                    user={userInSession}
+                  />
+                )}
+              />
+              <Route
+                exact
+                path="/posts/:id/edit"
+                render={(props) => <EditPostPage id={props.match.params.id} />}
+              />
               <Route path="/chat" component={ChatPage} />
             </Suspense>
           </Switch>

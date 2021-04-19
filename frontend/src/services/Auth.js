@@ -6,6 +6,7 @@ const tokenKey = "_token";
 
 class Auth {
   setLoggedIn = () => {};
+  setLoggedInUser = (email) => {};
 
   isLoggedIn() {
     return this._getToken() != null;
@@ -21,11 +22,16 @@ class Auth {
 
   logout() {
     this.setLoggedIn(false);
+    this.setLoggedInUser(null);
     this._clearToken();
   }
 
   bindLoggedInStateSetter(loggedInStateSetter) {
     this.setLoggedIn = loggedInStateSetter;
+  }
+
+  bindLoggedInUserStateSetter(loggedInUserStateSetter) {
+    this.setLoggedInUser = loggedInUserStateSetter;
   }
 
   getAuthorizationHeader() {
@@ -37,11 +43,13 @@ class Auth {
       const response = await action(data);
       this._setToken(response.data.token);
       this.setLoggedIn(true);
+      this.setLoggedInUser(data.email);
       return true;
     } catch (e) {
       console.error(e);
 
       this.setLoggedIn(false);
+      this.setLoggedInUser(null);
       return false;
     }
   }
