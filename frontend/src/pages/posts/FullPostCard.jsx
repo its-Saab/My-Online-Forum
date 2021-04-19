@@ -19,7 +19,7 @@ export default function FullPostCard({ information, user }) {
 				<hr/>
 				<small>{information.author}</small>
 				<small className="float-right">
-					last updated <ReactTimeAgo date={information.lastUpdated} locale="en-US" />
+					last updated <ReactTimeAgo date={new Date(information.lastUpdated)} locale="en-US" />
 				</small>
 				<br/>
 				{information.author == user && (

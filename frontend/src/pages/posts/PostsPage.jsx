@@ -1,11 +1,10 @@
 // NPM Packages
-import React, { useState, useEffect } from "react";
+import React, { useEffect } from "react";
 import { useRecoilState } from "recoil";
 import { postState } from "../../state/state";
 
 // Project files
 import PostsApi from "../../api/PostsApi";
-import AuthApi from "../../api/AuthApi"
 import Form from "./Form";
 import Card from "./Card";
 
@@ -32,7 +31,6 @@ export default function PostsPage({user}) {
     try {
       await PostsApi.deletePost(post.id);
       const newPosts = posts.filter((p) => p.id !== post.id);
-
       setPosts(newPosts);
     } catch (e) {
       console.error(e);

@@ -12,7 +12,7 @@ export default function HomePage() {
         <p>SCANDINAVIA’S THE MOST POPULAR FORUM FOR MOVIE REVIEWS & DISCUSSIONS</p>
         <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
         <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
-      <Link to="/posts"><button type="button" class="btn btn-danger btn-lg">Read posts</button></Link>
+      <Link to="/posts"><button type="button" className="btn btn-danger btn-lg">Read posts</button></Link>
       </div>
     </div>
   );

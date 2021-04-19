@@ -12,7 +12,7 @@ export const ParticularPostPage = ({id, user}) => {
  const posts = useRecoilValue(postState);
 
  //Constants
-  const currentPost = posts.find((item) => item.id ==id);
+  const currentPost = posts.find((item) => item.id == id);
 
  return (
    <div>
