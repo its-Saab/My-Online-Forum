@@ -1,21 +1,21 @@
 // NPM Packages
-import React, { useEffect} from "react";
-import {useRecoilState} from "recoil";
-import {commentState} from "../../state/CommentState";
+import React, { useState, useEffect} from "react";
+
 
 // Project files
 import CommentApi from "../../api/CommentApi";
 import CommentForm from "./CommentForm";
 import CommentCard from "./CommentCard";
 
-export default function AllComments() {
-  // Local state
-  const [comments, setComments] = useRecoilState(commentState);
+export default function AllComments({id, user}) {
+
+  const [comments, setComments] = useState([]);
 
   // Methods
   async function createComment(commentData) {
     try {
-      const response = await CommentApi.createComment(commentData);
+
+      const response = await CommentApi.createComment(id, commentData);
       const comment = response.data;
       const newComments = comments.concat(comment);
 
@@ -37,21 +37,22 @@ export default function AllComments() {
   }
 
   useEffect(() => {
-    CommentApi.listPostComments()
+    CommentApi.listPostComments(id)
       .then(({ data }) => setComments(data))
       .catch((err) => console.error(err));
   }, [setComments]);
 
   // Components
   const CardsArray = comments.map((comment) => (
-    <CommentCard key={comment.id} comment={comment} onDeleteClick={() => deleteComment(comment)} />
+    <CommentCard userInSession={user} key={comment.id} comment={comment} onDeleteClick={() => deleteComment(comment)} />
   ));
 
   return (
     <div>
+      <h1>Comments</h1>
+      {CardsArray}
       <CommentForm onSubmit={(commentData) => createComment(commentData)} />
 
-      {CardsArray}
     </div>
   );
 }

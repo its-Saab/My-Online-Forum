@@ -5,12 +5,12 @@ class CommentApi {
         return Api.get(`/posts/${postId}/comments`);
     }
 
-    // getCommentById(id) {
-    //     return Api.get('/posts/'+id);
-    // }
+    getCommentById(id) {
+        return Api.get('/posts/'+id);
+    }
 
-    createComment(postId) {
-        return Api.post(`/posts/${postId}/comments`);
+    createComment(postId, commentData) {
+        return Api.post(`/posts/${postId}/comments`, commentData);
     }
 
     updateComment(commentData) {

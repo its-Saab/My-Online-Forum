@@ -1,6 +1,6 @@
 import React from "react";
 
-import { Link, useHistory } from "react-router-dom";
+import { useHistory } from "react-router-dom";
 import ProfilePicture from "../../assests/images/profile-picture.png";
 import ReactTimeAgo from 'react-time-ago'
 

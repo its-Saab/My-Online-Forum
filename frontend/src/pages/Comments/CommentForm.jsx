@@ -1,11 +1,10 @@
-import React from "react";
+import React, {useState} from "react";
 
 export default function CommentForm({ onSubmit }) {
-  const [body, setBody] = React.useState("");
-
+  const [body, setBody] = useState("");
   const handleSubmit = () => {
     // Invoke the passed in event callback
-    onSubmit({ body: body });
+    onSubmit({body});
 
     // Clear the input field
     setBody("");
@@ -20,8 +19,9 @@ export default function CommentForm({ onSubmit }) {
             <textarea
               className="form-control"
               placeholder="Enter your comment"
+              name="body"
               value={body}
-              onChange={(e) => setBody(e.target.value)}
+              onChange={(e) => setBody([e.target.name]=e.target.value)}
             />
           </div>
 
