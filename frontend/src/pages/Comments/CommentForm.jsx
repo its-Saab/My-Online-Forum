@@ -22,11 +22,13 @@ export default function CommentForm({ onSubmit }) {
               name="body"
               value={body}
               onChange={(e) => setBody([e.target.name]=e.target.value)}
+
             />
           </div>
 
           <div className="form-group">
-            <button className="btn btn-primary" onClick={handleSubmit}>
+
+            <button disabled={!body} className="btn btn-primary" onClick={handleSubmit}>
               Comment
             </button>
           </div>
